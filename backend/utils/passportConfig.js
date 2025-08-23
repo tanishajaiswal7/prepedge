@@ -5,7 +5,7 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "../db/model.js";
 
-// Debugging: make sure env vars are loaded
+
 console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
 console.log("GOOGLE_CLIENT_SECRET:", process.env.GOOGLE_CLIENT_SECRET);
 
@@ -14,7 +14,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8000/auth/google/callback", // ✅ corrected
+      callbackURL: `${process.env.SERVER_URL}/auth/google/callback`,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {

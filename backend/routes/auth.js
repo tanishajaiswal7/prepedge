@@ -3,7 +3,7 @@ import express from "express";
 import passport from "passport";
 import { login, logout, signup, googleAuthCallback } from "../controllers/authControllers.js";
 
-const router = express.Router();
+const router = express.Router(); //router is an instance of express.Router that we use to hold all our routes 
 
 router.post("/login", login);
 router.post("/register", signup);

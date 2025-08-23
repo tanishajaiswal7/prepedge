@@ -12,9 +12,9 @@ import auth from "./routes/auth.js";
 dotenv.config();
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
-// ✅ Session setup (after app is defined)
+// ✅ Session middleware (before passport.initialize and passport.session)
 app.use(
   session({
     secret: process.env.JWT_SECRET,
@@ -23,7 +23,7 @@ app.use(
   })
 );
 
-// ✅ Passport must come after session
+// ✅ Passport middleware (after session setup)
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -31,9 +31,16 @@ app.use(passport.session());
 import "./utils/passportConfig.js";
 
 const server = createServer(app);
+
+
+const allowedOrigins = [
+  "http://localhost:3000",           // local dev
+  process.env.CLIENT_URL             // frontend prod (Vercel)
+];
+
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -47,7 +54,7 @@ connectdb();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"],
     credentials: true,
   })
