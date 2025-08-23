@@ -80,7 +80,7 @@ export const googleAuthCallback = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
     // ✅ Only send token to frontend
-    res.redirect(`${process.env.CLIENT_URL}/auth/google/callback?token=${token}`);
+    res.redirect(`${process.env.CLIENT_URL}/?token=${token}`);
   } catch (error) {
     console.log(error);
     return res.status(500).send("internal server error");
