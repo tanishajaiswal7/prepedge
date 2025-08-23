@@ -1,3 +1,4 @@
+// GoogleRedirectHandler.jsx
 import { useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { DataContext } from "../context/DataProvider";
@@ -15,7 +16,8 @@ const GoogleRedirectHandler = () => {
     if (token && userParam) {
       const user = JSON.parse(decodeURIComponent(userParam));
       localStorage.setItem("token", token);
-      setUser({ token, });
+
+      setUser({ token, ...user }); // ✅ save full user
       navigate("/"); // redirect to homepage
     } else {
       navigate("/login");
