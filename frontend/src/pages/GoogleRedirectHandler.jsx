@@ -15,7 +15,7 @@ const GoogleRedirectHandler = () => {
     if (token && userParam) {
       const user = JSON.parse(decodeURIComponent(userParam));
       localStorage.setItem("token", token);
-      setUser({ token, ...user });
+      setUser({ token, });
       navigate("/"); // redirect to homepage
     } else {
       navigate("/login");

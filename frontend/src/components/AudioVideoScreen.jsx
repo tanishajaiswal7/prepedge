@@ -7,7 +7,7 @@ import CodeEditor from "./CodeEditor";
 function AudioVideoScreen() {
   const { roomId, peerInstance, status, socket } = useContext(DataContext);
   const remoteVideoRef = useRef(null);
-  const currentUserVideoRef = useRef(null);
+  const currentUserVideoRef = useRef(null); //refs to control the video elements
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -27,7 +27,7 @@ function AudioVideoScreen() {
     peerInstance.current.on("call", (call) => {
       getUserMedia({ video: true, audio: true })
         .then((mediaStream) => {
-          currentUserVideoRef.current.srcObject = mediaStream;
+          currentUserVideoRef.current.srcObject = mediaStream; //shows local camera 
           currentUserVideoRef.current.play();
 
           call.answer(mediaStream);
@@ -45,7 +45,7 @@ function AudioVideoScreen() {
     if (status === "interviewee") {
       call(roomId);
     }
-
+   //cleanup function to close the peer connection when component unmounts
     return () => {
       if (peerInstance.current) {
         peerInstance.current.destroy();
