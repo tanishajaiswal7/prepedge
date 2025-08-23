@@ -39,7 +39,7 @@ function Login() {
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-500">
       <h1 className="text-white text-5xl font-extrabold mb-10 drop-shadow-lg tracking-wide">
-        Welcome Back to <span className="text-yellow-300">PrepBot</span>
+        Welcome Back to <span className="text-yellow-300">ProScout</span>
       </h1>
 
       <div className="flex flex-col bg-white/10 backdrop-blur-lg shadow-2xl shadow-black/30 p-12 rounded-2xl w-[90%] sm:w-[400px] items-center gap-6 border border-white/20">

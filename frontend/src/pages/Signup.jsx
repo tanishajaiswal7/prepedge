@@ -48,7 +48,7 @@ function Signup() {
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-500">
       <h1 className="text-white text-4xl font-extrabold mb-8 drop-shadow-lg tracking-wide">
-        Welcome to <span className="text-yellow-300">PrepBot</span>
+        Welcome to <span className="text-yellow-300">ProScout</span>
       </h1>
 
       <div className="flex flex-col shadow-2xl border border-gray-200 p-12 rounded-2xl w-11/12 md:w-4/12 bg-white/10 backdrop-blur-lg">
