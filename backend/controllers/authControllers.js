@@ -73,16 +73,26 @@ export const signup = async (req, res) => {
 };
 
 // GOOGLE CALLBACK
+
 export const googleAuthCallback = async (req, res) => {
   try {
     const user = req.user;
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-    // ✅ Only send token to frontend
-    res.redirect(`${process.env.CLIENT_URL}/auth/google/callback?token=${token}`);
+    // send both token and user to frontend
+    const userParam = encodeURIComponent(JSON.stringify({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    }));
+
+    res.redirect(
+      `${process.env.CLIENT_URL}/auth/google/callback?token=${token}&user=${userParam}`
+    );
   } catch (error) {
     console.log(error);
     return res.status(500).send("internal server error");
   }
 };
+
