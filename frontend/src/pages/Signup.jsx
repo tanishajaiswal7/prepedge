@@ -10,12 +10,13 @@ function Signup() {
   const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
-  const API = "http://localhost:8000";
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+
 
   // Manual signup
   const handleSignup = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/register", {
+      const res = await fetch(`${API_URL}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, username, password }),
@@ -42,7 +43,7 @@ function Signup() {
 
   // Google login
   const handleGoogleLogin = () => {
-    window.location.href = `${API}/auth/google`;
+    window.location.href = `${API_URL}/auth/google`;
   };
 
   return (

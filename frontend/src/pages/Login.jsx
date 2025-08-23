@@ -8,16 +8,16 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const API = "http://localhost:8000";
+ const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   
   const handleGoogleLogin = () => {
-    window.location.href = `${API}/auth/google`;
+    window.location.href = `${API_URL}/auth/google`;
   };
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/login", {
+      const res = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

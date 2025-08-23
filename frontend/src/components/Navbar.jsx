@@ -2,13 +2,15 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../context/DataProvider";
 
+const API_URL = import.meta.env.VITE_BACKEND_URL;
+
 function Navbar() {
   const { user, setUser } = useContext(DataContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:8000/api/logout", {
+      await fetch(`${API_URL}/api/logout`, {
         method: "POST",
         credentials: "include",
       });

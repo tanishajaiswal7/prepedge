@@ -17,8 +17,10 @@ export const DataProvider = ({ children }) => {
   const [peerId, setPeerId] = useState("");
   const peerInstance = useRef(null);
 
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
-    const socket = io("http://localhost:8000", {
+    const socket = io(`${API_URL}`, {
       withCredentials: true,
     });
 
