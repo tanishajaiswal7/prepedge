@@ -26,9 +26,19 @@ export const DataProvider = ({ children }) => {
 
     setSocket(socket);
 
-    const storedUser = localStorage.getItem("token");
-    if (storedUser) {
-      setUser(storedUser);
+    // Check for stored user data
+    const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+    
+    if (storedToken && storedUser) {
+      try {
+        const userData = JSON.parse(storedUser);
+        setUser({ token: storedToken, ...userData });
+      } catch (error) {
+        console.error("Error parsing stored user data:", error);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
     }
 
     const peer = new Peer();

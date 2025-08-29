@@ -78,30 +78,50 @@ function AudioVideoScreen() {
   };
 
   return (
-    <>
-      <div className="flex w-full justify-between h-2/6 items-center px-12">
-        <div className="w-4/12 ">
-          <video
-            ref={currentUserVideoRef}
-            autoPlay
-            playsInline
-            className="rounded-xl shadow-xl"
-          />
+    <div className="min-h-screen bg-gray-800 p-2 sm:p-4 lg:p-6">
+      {/* Video and Notepad Section */}
+      <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-6 mb-4 lg:mb-6">
+        {/* Videos Container */}
+        <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 flex-1">
+          {/* Current User Video */}
+          <div className="w-full sm:w-1/2 lg:w-5/12">
+            <div className="bg-gray-900 rounded-xl p-2">
+              <h3 className="text-white text-sm font-medium mb-2">You</h3>
+              <video
+                ref={currentUserVideoRef}
+                autoPlay
+                playsInline
+                muted
+                className="w-full h-32 sm:h-40 lg:h-48 object-cover rounded-lg shadow-xl bg-gray-700"
+              />
+            </div>
+          </div>
+          
+          {/* Remote User Video */}
+          <div className="w-full sm:w-1/2 lg:w-5/12">
+            <div className="bg-gray-900 rounded-xl p-2">
+              <h3 className="text-white text-sm font-medium mb-2">Interviewer</h3>
+              <video
+                ref={remoteVideoRef}
+                autoPlay
+                playsInline
+                className="w-full h-32 sm:h-40 lg:h-48 object-cover rounded-lg shadow-xl bg-gray-700"
+              />
+            </div>
+          </div>
         </div>
-        <Notepad socket={socket} roomId={roomId} />
-        <div className="w-4/12 ">
-          <video
-            ref={remoteVideoRef}
-            autoPlay
-            playsInline
-            className="rounded-xl shadow-xl"
-          />
+        
+        {/* Notepad */}
+        <div className="w-full lg:w-2/12 min-h-[200px] lg:min-h-[250px]">
+          <Notepad socket={socket} roomId={roomId} />
         </div>
       </div>
-      <div>
+      
+      {/* Code Editor Section */}
+      <div className="w-full">
         <CodeEditor socket={socket} roomId={roomId} />
       </div>
-    </>
+    </div>
   );
 }
 

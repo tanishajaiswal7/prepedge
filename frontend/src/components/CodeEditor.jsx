@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 import LanguageDropdown from "./LanguageDropdown";
 import Output from "./Output";
 
@@ -40,40 +40,60 @@ function CodeEditor({ socket, roomId }) {
   }, []);
 
   return (
-    <>
-      <div className="flex mt-10 gap-4 px-10">
-        <div>
-          <div className="flex items-center gap-4 px-4 mt-3">
-            <p className="text-xl font-semibold text-white">Language:</p>
-            <LanguageDropdown
-              langSetter={setLanguage}
-              verSetter={setVersion}
-              socket={socket}
-              lang={language}
-              ver={version}
-              roomId={roomId}
-            />
+    <div className="w-full">
+      <div className="flex flex-col xl:flex-row gap-4 lg:gap-6">
+        {/* Code Editor Section */}
+        <div className="w-full xl:w-1/2">
+          <div className="bg-gray-900 rounded-xl p-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mb-4">
+              <p className="text-lg lg:text-xl font-semibold text-white whitespace-nowrap">Language:</p>
+              <LanguageDropdown
+                langSetter={setLanguage}
+                verSetter={setVersion}
+                socket={socket}
+                lang={language}
+                ver={version}
+                roomId={roomId}
+              />
+            </div>
+            <div className="w-full overflow-hidden rounded-lg">
+              <Editor
+                height="40vh"
+                theme="vs-dark"
+                width="100%"
+                language={language}
+                value={value}
+                onChange={handleEditorChange}
+                onMount={handleEditorDidMount}
+                options={{
+                  minimap: { enabled: false },
+                  scrollBeyondLastLine: false,
+                  fontSize: 14,
+                  lineNumbers: 'on',
+                  roundedSelection: false,
+                  scrollbar: {
+                    vertical: 'auto',
+                    horizontal: 'auto'
+                  },
+                  wordWrap: 'on'
+                }}
+              />
+            </div>
           </div>
-          <Editor
-            height="50vh"
-            theme="vs-dark"
-            width="50vw"
+        </div>
+        
+        {/* Output Section */}
+        <div className="w-full xl:w-1/2">
+          <Output
+            version={version}
             language={language}
             value={value}
-            onChange={handleEditorChange}
-            onMount={handleEditorDidMount}
-            className="my-4"
+            socket={socket}
+            roomId={roomId}
           />
         </div>
-        <Output
-          version={version}
-          language={language}
-          value={value}
-          socket={socket}
-          roomId={roomId}
-        />
       </div>
-    </>
+    </div>
   );
 }
 

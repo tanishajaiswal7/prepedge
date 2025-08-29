@@ -25,12 +25,27 @@ function Notepad({ socket, roomId }) {
   };
 
   return (
-    <ReactQuill
-      theme="snow"
-      value={value}
-      onChange={handleChange}
-      className="w-10/12 h-5/6 px-4 text-white"
-    />
+    <div className="bg-gray-900 rounded-xl p-4 h-full">
+      <h3 className="text-white text-lg font-semibold mb-3">Notes</h3>
+      <div className="h-full">
+        <ReactQuill
+          theme="snow"
+          value={value}
+          onChange={handleChange}
+          className="h-full"
+          style={{
+            height: 'calc(100% - 42px)' // Account for toolbar height
+          }}
+          modules={{
+            toolbar: [
+              ['bold', 'italic', 'underline'],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              ['clean']
+            ]
+          }}
+        />
+      </div>
+    </div>
   );
 }
 

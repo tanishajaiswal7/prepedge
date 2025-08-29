@@ -21,29 +21,29 @@ function Homepage() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="flex h-full w-full p-24 justify-around shadow-xl">
-        <div className="w-1/2 flex flex-col justify-center gap-4">
-          <p className="text-7xl font-bold">
+      <div className="flex flex-col lg:flex-row min-h-screen w-full px-4 sm:px-8 lg:px-24 py-12 lg:py-24 justify-center lg:justify-around items-center shadow-xl">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center gap-4 text-center lg:text-left order-2 lg:order-1">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
             Ace Your Interviews with Confidence
-          </p>
-          <p className="text-3xl font-semibold my-4">
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold my-4">
             Practice with real-time feedback and collaboration tools
           </p>
           {user ? (
-            <div className="flex gap-8">
+            <div className="flex flex-col sm:flex-row gap-4 lg:gap-8 justify-center lg:justify-start">
               <PopupModal />
               <InputModal />
             </div>
           ) : (
-            <div className="flex gap-8">
+            <div className="flex flex-col sm:flex-row gap-4 lg:gap-8 justify-center lg:justify-start">
               <button
-                className="bg-blue-400 font-semibold text-lg text-white px-4 py-1 rounded-md shadow-md"
+                className="bg-blue-400 font-semibold text-lg text-white px-6 py-3 rounded-md shadow-md hover:bg-blue-500 transition"
                 onClick={() => navigate("/login")}
               >
                 Login
               </button>
               <button
-                className="font-semibold text-lg px-4 py-1 rounded-md border border-gray-300 shadow-md"
+                className="font-semibold text-lg px-6 py-3 rounded-md border border-gray-300 shadow-md hover:bg-gray-50 transition"
                 onClick={() => navigate("/signup")}
               >
                 Signup
@@ -51,93 +51,115 @@ function Homepage() {
             </div>
           )}
         </div>
-        <div className="w-2/12">
-          <img src={heroGif} alt="Interview GIF" />
+        <div className="w-full sm:w-2/3 md:w-1/2 lg:w-2/12 xl:w-3/12 mb-8 lg:mb-0 order-1 lg:order-2">
+          <img src={heroGif} alt="Interview GIF" className="w-full h-auto" />
         </div>
       </div>
 
       {/* Features */}
-      <div className="p-24 flex flex-col items-center" id="features">
-        <div className="w-fit mx-auto border-b-4 border-blue-400 p-2 text-5xl font-semibold">
+      <div className="px-4 sm:px-8 lg:px-24 py-12 lg:py-24 flex flex-col items-center" id="features">
+        <div className="w-fit mx-auto border-b-4 border-blue-400 p-2 text-3xl sm:text-4xl lg:text-5xl font-semibold text-center">
           Our Features
         </div>
-        <div className="flex flex-row-reverse items-center justify-between p-12">
-          <p className="text-3xl w-1/2">
-            <strong>Audio and Video Calls: </strong>Communicate seamlessly with
-            crystal-clear audio and video.
-          </p>
-          <img
-            src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*NLSe2SyjfxdbEqFsOWHhlg.png"
-            className="w-4/12 rounded-md shadow-xl"
-            alt="Audio/Video Calls"
-          />
+        
+        {/* Feature 1 */}
+        <div className="flex flex-col lg:flex-row-reverse items-center justify-between py-8 lg:py-12 gap-8">
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
+            <p className="text-xl sm:text-2xl lg:text-3xl">
+              <strong>Audio and Video Calls: </strong>Communicate seamlessly with
+              crystal-clear audio and video.
+            </p>
+          </div>
+          <div className="w-full sm:w-2/3 lg:w-4/12">
+            <img
+              src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*NLSe2SyjfxdbEqFsOWHhlg.png"
+              className="w-full h-auto rounded-md shadow-xl"
+              alt="Audio/Video Calls"
+            />
+          </div>
         </div>
 
-        <div className="flex items-center justify-between p-12">
-          <p className="text-3xl w-1/2">
-            <strong>Collaborative Code Editor: </strong>Code together in
-            real-time with syntax highlighting and autocompletion.
-          </p>
-          <img
-            src={codeEditorImg}
-            className="w-4/12 rounded-md shadow-xl"
-            alt="Code Editor"
-          />
+        {/* Feature 2 */}
+        <div className="flex flex-col lg:flex-row items-center justify-between py-8 lg:py-12 gap-8">
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
+            <p className="text-xl sm:text-2xl lg:text-3xl">
+              <strong>Collaborative Code Editor: </strong>Code together in
+              real-time with syntax highlighting and autocompletion.
+            </p>
+          </div>
+          <div className="w-full sm:w-2/3 lg:w-4/12">
+            <img
+              src={codeEditorImg}
+              className="w-full h-auto rounded-md shadow-xl"
+              alt="Code Editor"
+            />
+          </div>
         </div>
 
-        <div className="flex flex-row-reverse items-center justify-between p-12">
-          <p className="text-3xl w-1/2 text-end">
-            <strong>Text Editor: </strong>Take notes and plan your solutions
-            with our integrated text editor.
-          </p>
-          <img
-            src={textEditorImg}
-            className="w-4/12 rounded-md shadow-xl"
-            alt="Text Editor"
-          />
+        {/* Feature 3 */}
+        <div className="flex flex-col lg:flex-row-reverse items-center justify-between py-8 lg:py-12 gap-8">
+          <div className="w-full lg:w-1/2 text-center lg:text-right">
+            <p className="text-xl sm:text-2xl lg:text-3xl">
+              <strong>Text Editor: </strong>Take notes and plan your solutions
+              with our integrated text editor.
+            </p>
+          </div>
+          <div className="w-full sm:w-2/3 lg:w-4/12">
+            <img
+              src={textEditorImg}
+              className="w-full h-auto rounded-md shadow-xl"
+              alt="Text Editor"
+            />
+          </div>
         </div>
       </div>
 
       {/* How it works */}
-      <div className="p-24 flex flex-col items-center">
-        <div className="w-fit mx-auto border-b-4 border-blue-400 p-2 text-5xl font-semibold">
+      <div className="px-4 sm:px-8 lg:px-24 py-12 lg:py-24 flex flex-col items-center">
+        <div className="w-fit mx-auto border-b-4 border-blue-400 p-2 text-3xl sm:text-4xl lg:text-5xl font-semibold text-center">
           How it works?
         </div>
-        <div className="flex flex-col items-center justify-center p-12 gap-12">
-          <p className="text-3xl">
-            <strong>Sign Up:</strong> Create an account to get started.
-          </p>
-          <p className="text-3xl">
-            <strong>Create or Join an Interview:</strong> Choose to start or
-            join an interview session.
-          </p>
-          <p className="text-3xl">
-            <strong>Collaborate and Practice:</strong> Use our tools to practice
-            and improve your interview skills.
-          </p>
+        <div className="flex flex-col items-center justify-center py-8 lg:py-12 gap-8 lg:gap-12 max-w-4xl">
+          <div className="text-center">
+            <p className="text-xl sm:text-2xl lg:text-3xl">
+              <strong>Sign Up:</strong> Create an account to get started.
+            </p>
+          </div>
+          <div className="text-center">
+            <p className="text-xl sm:text-2xl lg:text-3xl">
+              <strong>Create or Join an Interview:</strong> Choose to start or
+              join an interview session.
+            </p>
+          </div>
+          <div className="text-center">
+            <p className="text-xl sm:text-2xl lg:text-3xl">
+              <strong>Collaborate and Practice:</strong> Use our tools to practice
+              and improve your interview skills.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="bg-gradient-to-r from-indigo-900 via-purple-900 to-blue-900 text-gray-200 p-24">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-between">
+      <footer className="bg-gradient-to-r from-indigo-900 via-purple-900 to-blue-900 text-gray-200 px-4 sm:px-8 lg:px-24 py-12 lg:py-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {/* Quick Links */}
-            <div className="w-full sm:w-1/3 mb-6 sm:mb-0">
-              <h3 className="text-3xl font-bold mb-4 text-white">Quick Links</h3>
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-white">Quick Links</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#privacy" className="hover:underline hover:text-orange-400">
+                  <a href="#privacy" className="text-base lg:text-lg hover:underline hover:text-orange-400 transition">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#terms" className="hover:underline hover:text-orange-400">
+                  <a href="#terms" className="text-base lg:text-lg hover:underline hover:text-orange-400 transition">
                     Terms of Service
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="hover:underline hover:text-orange-400">
+                  <a href="#contact" className="text-base lg:text-lg hover:underline hover:text-orange-400 transition">
                     Contact Us
                   </a>
                 </li>
@@ -145,24 +167,27 @@ function Homepage() {
             </div>
 
             {/* Social Links */}
-            <div className="w-full sm:w-1/3 mb-6 sm:mb-0">
-              <h3 className="text-3xl font-bold mb-4 text-white">Follow Us</h3>
-              <div className="flex space-x-6">
+            <div className="text-center">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-white">Follow Us</h3>
+              <div className="flex justify-center space-x-6">
                 <a
                   href="https://www.linkedin.com/in/manthan-khawse-74a898245/"
-                  className="text-3xl hover:scale-125 transition-all ease-in-out hover:text-orange-400"
+                  className="text-2xl lg:text-3xl hover:scale-125 transition-all ease-in-out hover:text-orange-400"
+                  aria-label="LinkedIn"
                 >
                   <FaLinkedin />
                 </a>
                 <a
                   href="https://x.com/khawse_man69128"
-                  className="text-3xl hover:scale-125 transition-all ease-in-out hover:text-orange-400"
+                  className="text-2xl lg:text-3xl hover:scale-125 transition-all ease-in-out hover:text-orange-400"
+                  aria-label="Twitter"
                 >
                   <FaSquareXTwitter />
                 </a>
                 <a
                   href="https://github.com/manthankhawse"
-                  className="text-3xl hover:scale-125 transition-all ease-in-out hover:text-orange-400"
+                  className="text-2xl lg:text-3xl hover:scale-125 transition-all ease-in-out hover:text-orange-400"
+                  aria-label="GitHub"
                 >
                   <FaSquareGithub />
                 </a>
@@ -170,20 +195,21 @@ function Homepage() {
             </div>
 
             {/* Contact Info */}
-            <div className="w-full sm:w-1/3">
-              <h3 className="text-3xl font-bold mb-4 text-white">Contact Us</h3>
-              <p>Email: prepedge@gmail.com</p>
-              <p>Phone: +91 809345667xx</p>
-              
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-white">Contact Us</h3>
+              <div className="space-y-2">
+                <p className="text-base lg:text-lg">Email: prepedge@gmail.com</p>
+                <p className="text-base lg:text-lg">Phone: +91 809345667xx</p>
+              </div>
             </div>
           </div>
 
           {/* Bottom */}
-          <div className="text-center mt-8 text-gray-400">
-            <p>&copy; 2025 ProScout. All rights reserved.</p>
+          <div className="text-center mt-8 pt-8 border-t border-indigo-700 text-gray-400">
+            <p className="text-sm lg:text-base">&copy; 2025 ProScout. All rights reserved.</p>
           </div>
         </div>
-      </div>
+      </footer>
     </>
   );
 }

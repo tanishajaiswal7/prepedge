@@ -56,24 +56,37 @@ function Output({ language, version, value, socket, roomId }) {
   }, [socket]);
 
   return (
-    <div className="flex flex-col w-full py-4">
-      <div>
-        <button
-          className="text-lg font-semibold text-white bg-blue-500 rounded-xl shadow-xl px-4 py-1"
-          onClick={handleRun}
-        >
-          Run
-        </button>
-      </div>
-      <p className="text-lg font-semibold mt-3 text-white">Input</p>
-      <textarea
-        className="h-full w-full outline-none border-2 border-gray-500 rounded-lg shadow-xl text-semibold p-2"
-        value={input}
-        onChange={handleChange}
-      />
-      <p className="text-lg font-semibold mt-3 text-white">Output</p>
-      <div className="h-full w-full border-2 border-gray-500 rounded-lg shadow-xl text-semibold bg-white p-2">
-        {output}
+    <div className="bg-gray-900 rounded-xl p-4 h-full">
+      <div className="flex flex-col h-full">
+        <div className="mb-4">
+          <button
+            className="w-full sm:w-auto text-lg font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-xl shadow-xl px-6 py-2 transition"
+            onClick={handleRun}
+          >
+            Run Code
+          </button>
+        </div>
+        
+        <div className="flex-1 flex flex-col gap-4">
+          {/* Input Section */}
+          <div className="flex-1">
+            <p className="text-lg font-semibold mb-2 text-white">Input</p>
+            <textarea
+              className="w-full h-24 sm:h-32 lg:h-40 outline-none border-2 border-gray-600 rounded-lg shadow-xl font-mono text-sm p-3 bg-gray-800 text-white placeholder-gray-400 resize-none"
+              value={input}
+              onChange={handleChange}
+              placeholder="Enter input for your program..."
+            />
+          </div>
+          
+          {/* Output Section */}
+          <div className="flex-1">
+            <p className="text-lg font-semibold mb-2 text-white">Output</p>
+            <div className="w-full h-24 sm:h-32 lg:h-40 border-2 border-gray-600 rounded-lg shadow-xl font-mono text-sm bg-gray-800 text-green-400 p-3 overflow-auto whitespace-pre-wrap">
+              {output || "Output will appear here..."}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
