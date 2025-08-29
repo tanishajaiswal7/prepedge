@@ -7,7 +7,7 @@ ProScout is a mock interview platform designed to enhance interview preparation 
 
 ## Features of Website 
 
-- User authentication and authorization
+- User authentication via google and authorization
 - Start or join an interview using a room ID
 - One-on-one audio and video calls with peerjs
 - Collaborative text editor and code editor
